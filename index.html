@@ -11,23 +11,38 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <main id="app">
-    <ul id="list" class="list"></ul>
-    <p id="empty" class="empty" hidden>No trackers yet.<br>Tap + to add one.</p>
+  <main id="auth-view" class="auth" hidden>
+    <h1 class="auth-title">Days Since</h1>
+    <p class="auth-sub">Sign in with email — we'll send you a link.</p>
+    <form id="signin-form" class="auth-form">
+      <input id="signin-email" type="email" required placeholder="you@example.com" autocomplete="email" inputmode="email">
+      <button type="submit" class="btn-primary">Send link</button>
+    </form>
+    <p id="signin-status" class="auth-status" aria-live="polite"></p>
   </main>
 
-  <button id="add-btn" class="add-btn" aria-label="Add tracker">+</button>
+  <main id="app-view" hidden>
+    <ul id="list" class="list"></ul>
+    <p id="empty" class="empty" hidden>No trackers yet.<br>Tap + to add one.</p>
+    <p class="footer"><button id="signout-btn" type="button" class="link-btn">Sign out</button></p>
+  </main>
+
+  <main id="loading-view" class="loading">
+    <p>Loading…</p>
+  </main>
+
+  <button id="add-btn" class="add-btn" aria-label="Add tracker" hidden>+</button>
 
   <dialog id="edit-dialog" class="dialog">
     <form id="edit-form" method="dialog">
       <h2 id="edit-title">New tracker</h2>
       <label>
         <span>Name</span>
-        <input id="edit-name" type="text" required maxlength="40" autocomplete="off">
+        <input id="edit-name" type="text" required maxlength="80" autocomplete="off">
       </label>
       <label>
         <span>Every how many days?</span>
-        <input id="edit-interval" type="number" min="1" max="365" required inputmode="numeric">
+        <input id="edit-interval" type="number" min="1" max="3650" required inputmode="numeric">
       </label>
       <div class="dialog-actions">
         <button type="button" id="edit-delete" class="btn-danger" hidden>Delete</button>
@@ -38,6 +53,6 @@
     </form>
   </dialog>
 
-  <script src="app.js"></script>
+  <script type="module" src="app.js"></script>
 </body>
 </html>

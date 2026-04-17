@@ -1,5 +1,7 @@
-const CACHE = "days-since-v1";
-const ASSETS = ["./", "index.html", "app.js", "styles.css", "manifest.json"];
+const CACHE = "days-since-v2";
+const ASSETS = ["./", "index.html", "styles.css", "manifest.json"];
+// Note: app.js is intentionally NOT precached — it's an ESM module that
+// imports from a CDN; let the network fetch handle it so updates ship cleanly.
 
 self.addEventListener("install", (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(ASSETS)));
